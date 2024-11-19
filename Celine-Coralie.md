@@ -34,4 +34,4 @@ Section 4
     >Now mount the partition ```sudo mount /dev/sdb1 /data```
     >Then add an entry to the /etc/fstab for permanent mounting ```echo "/dev/sdb1 /data ext4 defaults 0 2" >> /etc/fstab"
     >Remount the partition ```sudo mount -a```
-18. 
+18. The etc/fstab is a configuration file used by linux systems to define how filw systems  should be mounted
