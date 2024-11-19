@@ -56,23 +56,23 @@ Section 4
 
 16. -Ext3 introduced journaling, which records changes to the file system in a log before applying them to the actual data and this ensures data integrity and allows for faster recovery from system crashes or power failures while ext4 also has journaling, but it’s more advanced, with features like journal checksums.
 
-    - Ext3 has a maximum file size of 16 GB and a maximum partition size of 32 TB while ext4 increases these limits to 16 TB for individual files and 1 EB (exabyte) for the entire file system.
+    -Ext3 has a maximum file size of 16 GB and a maximum partition size of 32 TB while ext4 increases these limits to 16 TB for individual files and 1 EB (exabyte) for the entire file system.
 
-   - Ext3 file systems are limited to a maximum of 32,000 subdirectories while ext4 file systems are limited to a maximum of 6,4000 subdirectories.
+    -Ext3 file systems are limited to a maximum of 32,000 subdirectories while ext4 file systems are limited to a maximum of 6,4000 subdirectories.
 
-   - Also, ext4 supports delayed allocations which allows the filesystem to allocate disk space only when data is actually written and reduces disk fragmentation and they use extents which allow for more efficient allocation of disk space improving performance.
+    -Also, ext4 supports delayed allocations which allows the filesystem to allocate disk space only when data is actually written and reduces disk fragmentation and they use extents which allow for more efficient allocation of disk space improving performance.
 
 17. -Firstly, you have to identify the new disk using the command ```lsblk```. Then note the device name for example, /dev/sdb
 
-    - Then create a new partition with the command ```sudo fdisk /dev/sdb``` and exit the fdisk with the w option and specify the partition number e.g, /dev/sdb1
+    -Then create a new partition with the command ```sudo fdisk /dev/sdb``` and exit the fdisk with the w option and specify the partition number e.g, /dev/sdb1
       
-    - Format the partition with the ext4 using the command ```sudo mkfs.ext4 /dev/sdb1```
+    -Format the partition with the ext4 using the command ```sudo mkfs.ext4 /dev/sdb1```
       
-    - Now mount the partition ```sudo mount /dev/sdb1 /data```
+    -Now mount the partition ```sudo mount /dev/sdb1 /data```
       
-    - Then add an entry to the /etc/fstab for permanent mounting ```echo "/dev/sdb1 /data ext4 defaults 0 2" >> /etc/fstab"
+    -Then add an entry to the /etc/fstab for permanent mounting ```echo "/dev/sdb1 /data ext4 defaults 0 2" >> /etc/fstab"
       
-    - Remount the partition ```sudo mount -a```
+    -Remount the partition ```sudo mount -a```
 
 18. The etc/fstab is a configuration file used by linux systems to define how file systems should be mounted. It also contains information about each filesystem and some of these informations are;
 
@@ -87,7 +87,8 @@ Section 4
     -An example for mounting a filesystem is ```/dev/sdb1 /data ext4 defaults 0 2```.
 
 Bonus question
-     The motherboard firmware(BIOS or UEFI) boots and does a power on self test(POST) then when its sure hardware is okay it starts a program called the bootloader(GRand Unified Bootloader, GRUB). The GRUB reads its configuration file (/boot/grub/grub.cfg) and presents a boot menu to the user, allowing selection of the desired operating system or kernel parameters. Once a menu entry is chosen, GRUB loads the Linux kernel into memory and passes control to it. The Linux kernel is loaded into memory and begins the process of initializing the system. The kernel initializes and configures the hardware and also mounts the root filesystem (usually /dev/sda1 or /dev/mmcblk0p1) and sets up system services. The kernel executes the init process (usually /sbin/init), which is responsible for system initialization and startup. Init runs various scripts and services to configure and initialize system components and also sets up the system’s runlevel (default.target) and starts the system’s primary services. The system is now fully initialized and ready for user interaction.
+
+The motherboard firmware(BIOS or UEFI) boots and does a power on self test(POST) then when its sure hardware is okay it starts a program called the bootloader(GRand Unified Bootloader, GRUB). The GRUB reads its configuration file (/boot/grub/grub.cfg) and presents a boot menu to the user, allowing selection of the desired operating system or kernel parameters. Once a menu entry is chosen, GRUB loads the Linux kernel into memory and passes control to it. The Linux kernel is loaded into memory and begins the process of initializing the system. The kernel initializes and configures the hardware and also mounts the root filesystem (usually /dev/sda1 or /dev/mmcblk0p1) and sets up system services. The kernel executes the init process (usually /sbin/init), which is responsible for system initialization and startup. Init runs various scripts and services to configure and initialize system components and also sets up the system’s runlevel (default.target) and starts the system’s primary services. The system is now fully initialized and ready for user interaction.
     
 
 
